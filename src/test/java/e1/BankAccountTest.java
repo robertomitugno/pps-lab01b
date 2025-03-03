@@ -14,11 +14,11 @@ public class BankAccountTest {
     private static final int BALANCE_AFTER_WITHDRAW_WITH_FEE = 799;
     private static final int WITHDRAW_AMOUNT_EXCEED = 1200;
 
-    private BankAccount account;
+    private SilverBankAccount account;
 
     @BeforeEach
     void init(){
-        this.account = new BankAccount();
+        this.account = new SilverBankAccount();
     }
 
     @Test

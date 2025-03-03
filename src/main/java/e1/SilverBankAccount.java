@@ -1,6 +1,6 @@
 package e1;
 
-public class BankAccount {
+public class SilverBankAccount {
 
     private static final int FEE = 1;
 
