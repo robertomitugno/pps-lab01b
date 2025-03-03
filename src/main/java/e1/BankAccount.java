@@ -2,6 +2,8 @@ package e1;
 
 public class BankAccount {
 
+    private static final int FEE = 1;
+
     private CoreBankAccount base = new CoreBankAccount();
 
     public int getBalance() {
@@ -16,6 +18,6 @@ public class BankAccount {
         if (this.getBalance() < amount){
             throw new IllegalStateException();
         }
-        base.withdraw(amount + 1);
+        base.withdraw(amount + FEE);
     }
 }
