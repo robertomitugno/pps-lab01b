@@ -1,7 +1,6 @@
 package e1;
 
 class CoreBankAccount {
-
     private int balance = 0;
 
     public int getBalance() {
