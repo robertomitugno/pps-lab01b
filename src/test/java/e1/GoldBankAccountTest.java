@@ -9,6 +9,8 @@ public class GoldBankAccountTest {
 
     private static final int BALANCE_INITIALLY = 0;
     private static final int DEPOSIT_AMOUNT = 500;
+    private static final int WITHDRAW_AMOUNT = 300;
+    private static final int BALANCE_AFTER = 200;
 
     CoreBankAccount coreBankAccount = new CoreBankAccount();
     BankAccount account;
@@ -32,7 +34,7 @@ public class GoldBankAccountTest {
     @Test
     public void testCanWithdraw() {
         this.account.deposit(DEPOSIT_AMOUNT);
-        this.account.withdraw(300);
-        assertEquals(200, this.account.getBalance());
+        this.account.withdraw(WITHDRAW_AMOUNT);
+        assertEquals(BALANCE_AFTER, this.account.getBalance());
     }
 }
