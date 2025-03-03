@@ -6,12 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GoldBankAccountTest {
 
+    private static final int BALANCE_INITIALLY = 0;
+
     CoreBankAccount coreBankAccount = new CoreBankAccount();
     BankAccount account;
 
     @Test
     public void testInitiallyEmpty(){
         account = new GoldBankAccount(coreBankAccount);
-        assertEquals(0, account.getBalance());
+        assertEquals(BALANCE_INITIALLY, account.getBalance());
     }
 }
