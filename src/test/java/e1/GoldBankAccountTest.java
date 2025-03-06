@@ -26,7 +26,7 @@ public class GoldBankAccountTest extends BankAccountTest {
     }
 
     @Test
-    public void testCanWithdrawWithMinusBalance() {
+    public void testCanWithdrawOverdraft() {
         this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
         this.goldBankAccount.withdraw(1500);
         assertEquals(-500, this.goldBankAccount.getBalance());
