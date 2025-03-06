@@ -11,6 +11,10 @@ public class BronzeBankAccount extends CoreBankAccount{
         if (this.getBalance() < amount){
             throw new IllegalStateException("The balance cannot go below 0");
         }
-        bankAccount.withdraw(amount);
+        if(amount >= 100){
+            bankAccount.withdraw(amount + 1);
+        } else {
+            bankAccount.withdraw(amount);
+        }
     }
 }

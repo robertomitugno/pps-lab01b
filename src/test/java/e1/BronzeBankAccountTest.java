@@ -17,8 +17,8 @@ public class BronzeBankAccountTest extends BankAccountTest{
 
     @Test
     public void testCanWithdraw() {
-        int withdrawAmount = 300;
-        int balanceAfterWithdraw = 700;
+        int withdrawAmount = 50;
+        int balanceAfterWithdraw = 950;
         bronzeBankAccountTest.deposit(DEPOSIT_AMOUNT);
         bronzeBankAccountTest.withdraw(withdrawAmount);
         assertEquals(balanceAfterWithdraw, bronzeBankAccountTest.getBalance());
@@ -29,5 +29,13 @@ public class BronzeBankAccountTest extends BankAccountTest{
         int withdrawAmountExceed = 1200;
         bronzeBankAccountTest.deposit(DEPOSIT_AMOUNT);
         assertThrows(IllegalStateException.class, () -> this.bronzeBankAccountTest.withdraw(withdrawAmountExceed));
+    }
+
+    @Test
+    public void testWithdrawWithFeeEqualsOne(){
+        int withdrawAmount = 300;
+        bronzeBankAccountTest.deposit(DEPOSIT_AMOUNT);
+        bronzeBankAccountTest.withdraw(withdrawAmount);
+        assertEquals(699, bronzeBankAccountTest.getBalance());
     }
 }
