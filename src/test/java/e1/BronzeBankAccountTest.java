@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BronzeBankAccountTest extends BankAccountTest{
 
-    BankAccount bronzeBankAccountTest;
+    private BankAccount bronzeBankAccountTest;
 
     @BeforeEach
     public void beforeEach() {
@@ -33,9 +33,10 @@ public class BronzeBankAccountTest extends BankAccountTest{
 
     @Test
     public void testWithdrawWithFeeEqualsOne(){
-        int withdrawAmount = 300;
+        int withdrawAmount = 100;
+        int balanceAfterWithdrawWithFee = DEPOSIT_AMOUNT - withdrawAmount - 1;
         bronzeBankAccountTest.deposit(DEPOSIT_AMOUNT);
         bronzeBankAccountTest.withdraw(withdrawAmount);
-        assertEquals(699, bronzeBankAccountTest.getBalance());
+        assertEquals(balanceAfterWithdrawWithFee, bronzeBankAccountTest.getBalance());
     }
 }
