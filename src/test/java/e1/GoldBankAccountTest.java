@@ -33,4 +33,10 @@ public class GoldBankAccountTest extends BankAccountTest {
         this.goldBankAccount.withdraw(WITHDRAW_AMOUNT_OVERDRAFT);
         assertEquals(BALANCE_AFTER_WITHDRAW_OVERDRAFT, this.goldBankAccount.getBalance());
     }
+
+    @Test
+    public void testWithdrawExceedOverdraft() {
+        this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
+        assertThrows(IllegalStateException.class, () -> this.goldBankAccount.withdraw(1600));
+    }
 }
