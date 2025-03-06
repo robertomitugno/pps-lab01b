@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GoldBankAccountTest extends BankAccountTest {
 
-    private static final int WITHDRAW_AMOUNT = 300;
-    private static final int BALANCE_AFTER_WITHDRAW = 200;
-    private static final int WITHDRAW_AMOUNT_OVERDRAFT = 1500;
-    private static final int BALANCE_AFTER_WITHDRAW_OVERDRAFT = -500;
-
     private BankAccount goldBankAccount;
 
     @BeforeEach
@@ -22,21 +17,26 @@ public class GoldBankAccountTest extends BankAccountTest {
 
     @Test
     public void testCanWithdraw() {
+        int withdrawAmount = 300;
+        int balanceAfterWithdraw = 700;
         this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
-        this.goldBankAccount.withdraw(WITHDRAW_AMOUNT);
-        assertEquals(BALANCE_AFTER_WITHDRAW, this.goldBankAccount.getBalance());
+        this.goldBankAccount.withdraw(withdrawAmount);
+        assertEquals(balanceAfterWithdraw, this.goldBankAccount.getBalance());
     }
 
     @Test
     public void testCanWithdrawOverdraft() {
+        int withdrawAmountOverdraft = 1500;
+        int expectedBalanceOverdraft = DEPOSIT_AMOUNT - withdrawAmountOverdraft;
         this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
-        this.goldBankAccount.withdraw(WITHDRAW_AMOUNT_OVERDRAFT);
-        assertEquals(BALANCE_AFTER_WITHDRAW_OVERDRAFT, this.goldBankAccount.getBalance());
+        this.goldBankAccount.withdraw(withdrawAmountOverdraft);
+        assertEquals(expectedBalanceOverdraft, this.goldBankAccount.getBalance());
     }
 
     @Test
     public void testWithdrawExceedOverdraft() {
+        int withdrawAmountExceed = 1600;
         this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
-        assertThrows(IllegalStateException.class, () -> this.goldBankAccount.withdraw(1600));
+        assertThrows(IllegalStateException.class, () -> this.goldBankAccount.withdraw(withdrawAmountExceed));
     }
 }

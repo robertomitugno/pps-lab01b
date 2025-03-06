@@ -8,10 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SilverBankAccountTest extends BankAccountTest{
 
-    private static final int WITHDRAW_AMOUNT = 200;
-    private static final int BALANCE_AFTER_WITHDRAW_WITH_FEE = 799;
-    private static final int WITHDRAW_AMOUNT_EXCEED = 1200;
-
     private BankAccount silverBankAccount;
 
     @BeforeEach
@@ -23,15 +19,18 @@ public class SilverBankAccountTest extends BankAccountTest{
 
     @Test
     public void testCanWithdraw() {
+        int withdrawAmount = 200;
+        int balanceAfterWithdrawWithFee = 799;
         this.silverBankAccount.deposit(DEPOSIT_AMOUNT);
-        this.silverBankAccount.withdraw(WITHDRAW_AMOUNT);
-        assertEquals(BALANCE_AFTER_WITHDRAW_WITH_FEE, this.silverBankAccount.getBalance());
+        this.silverBankAccount.withdraw(withdrawAmount);
+        assertEquals(balanceAfterWithdrawWithFee, this.silverBankAccount.getBalance());
     }
 
     @Test
     public void testCannotWithdrawMoreThanAvailable(){
+        int withdrawAmountExceed = 1200;
         this.silverBankAccount.deposit(DEPOSIT_AMOUNT);
-        assertThrows(IllegalStateException.class, () -> this.silverBankAccount.withdraw(WITHDRAW_AMOUNT_EXCEED));
+        assertThrows(IllegalStateException.class, () -> this.silverBankAccount.withdraw(withdrawAmountExceed));
     }
 
 }
