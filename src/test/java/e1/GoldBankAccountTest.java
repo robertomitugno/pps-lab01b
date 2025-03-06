@@ -24,4 +24,11 @@ public class GoldBankAccountTest extends BankAccountTest {
         this.goldBankAccount.withdraw(WITHDRAW_AMOUNT);
         assertEquals(BALANCE_AFTER_WITHDRAW, this.goldBankAccount.getBalance());
     }
+
+    @Test
+    public void testCanWithdrawWithMinusBalance() {
+        this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
+        this.goldBankAccount.withdraw(1500);
+        assertEquals(-500, this.goldBankAccount.getBalance());
+    }
 }
