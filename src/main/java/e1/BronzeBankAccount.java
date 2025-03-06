@@ -8,6 +8,9 @@ public class BronzeBankAccount extends CoreBankAccount{
 
     @Override
     public void withdraw(int amount) {
-        super.withdraw(amount);
+        if (this.getBalance() < amount){
+            throw new IllegalStateException();
+        }
+        bankAccount.withdraw(amount);
     }
 }

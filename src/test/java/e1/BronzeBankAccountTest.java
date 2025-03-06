@@ -23,4 +23,11 @@ public class BronzeBankAccountTest extends BankAccountTest{
         bronzeBankAccountTest.withdraw(withdrawAmount);
         assertEquals(balanceAfterWithdraw, bronzeBankAccountTest.getBalance());
     }
+
+    @Test
+    public void testCannotWithdrawMoreThanAvailable(){
+        int withdrawAmountExceed = 1200;
+        bronzeBankAccountTest.deposit(DEPOSIT_AMOUNT);
+        assertThrows(IllegalStateException.class, () -> this.bronzeBankAccountTest.withdraw(withdrawAmountExceed));
+    }
 }
