@@ -9,6 +9,8 @@ public class GoldBankAccountTest extends BankAccountTest {
 
     private static final int WITHDRAW_AMOUNT = 300;
     private static final int BALANCE_AFTER_WITHDRAW = 200;
+    private static final int WITHDRAW_AMOUNT_OVERDRAFT = 1500;
+    private static final int BALANCE_AFTER_WITHDRAW_OVERDRAFT = -500;
 
     private BankAccount goldBankAccount;
 
@@ -26,9 +28,9 @@ public class GoldBankAccountTest extends BankAccountTest {
     }
 
     @Test
-    public void testCanWithdrawWithMinusBalance() {
+    public void testCanWithdrawOverdraft() {
         this.goldBankAccount.deposit(DEPOSIT_AMOUNT);
-        this.goldBankAccount.withdraw(1500);
-        assertEquals(-500, this.goldBankAccount.getBalance());
+        this.goldBankAccount.withdraw(WITHDRAW_AMOUNT_OVERDRAFT);
+        assertEquals(BALANCE_AFTER_WITHDRAW_OVERDRAFT, this.goldBankAccount.getBalance());
     }
 }
