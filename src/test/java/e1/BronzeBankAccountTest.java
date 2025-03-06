@@ -17,8 +17,10 @@ public class BronzeBankAccountTest extends BankAccountTest{
 
     @Test
     public void testCanWithdraw() {
-        bronzeBankAccountTest.deposit(1000);
-        bronzeBankAccountTest.withdraw(300);
-        assertEquals(700, bronzeBankAccountTest.getBalance());
+        int withdrawAmount = 300;
+        int balanceAfterWithdraw = 700;
+        bronzeBankAccountTest.deposit(DEPOSIT_AMOUNT);
+        bronzeBankAccountTest.withdraw(withdrawAmount);
+        assertEquals(balanceAfterWithdraw, bronzeBankAccountTest.getBalance());
     }
 }
