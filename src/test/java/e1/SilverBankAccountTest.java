@@ -6,44 +6,32 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SilverBankAccountTest {
+public class SilverBankAccountTest extends BankAccountTest{
 
-    private static final int BALANCE_INITIALLY = 0;
-    private static final int DEPOSIT_AMOUNT = 1000;
     private static final int WITHDRAW_AMOUNT = 200;
     private static final int BALANCE_AFTER_WITHDRAW_WITH_FEE = 799;
     private static final int WITHDRAW_AMOUNT_EXCEED = 1200;
 
-    private CoreBankAccount coreBankAccount = new CoreBankAccount();
-    private BankAccount account;
+    private BankAccount silverBankAccount;
 
     @BeforeEach
-    void init(){
-        account = new SilverBankAccount(coreBankAccount);
+    void beforeEach(){
+        super.beforeEach();
+        silverBankAccount = new SilverBankAccount(super.account);
     }
 
-    @Test
-    public void testInitiallyEmpty() {
-        assertEquals(BALANCE_INITIALLY, this.account.getBalance());
-    }
-
-    @Test
-    public void testCanDeposit() {
-        this.account.deposit(DEPOSIT_AMOUNT);
-        assertEquals(DEPOSIT_AMOUNT, this.account.getBalance());
-    }
 
     @Test
     public void testCanWithdraw() {
-        this.account.deposit(DEPOSIT_AMOUNT);
-        this.account.withdraw(WITHDRAW_AMOUNT);
-        assertEquals(BALANCE_AFTER_WITHDRAW_WITH_FEE, this.account.getBalance());
+        this.silverBankAccount.deposit(DEPOSIT_AMOUNT);
+        this.silverBankAccount.withdraw(WITHDRAW_AMOUNT);
+        assertEquals(BALANCE_AFTER_WITHDRAW_WITH_FEE, this.silverBankAccount.getBalance());
     }
 
     @Test
     public void testCannotWithdrawMoreThanAvailable(){
-        this.account.deposit(DEPOSIT_AMOUNT);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(WITHDRAW_AMOUNT_EXCEED));
+        this.silverBankAccount.deposit(DEPOSIT_AMOUNT);
+        assertThrows(IllegalStateException.class, () -> this.silverBankAccount.withdraw(WITHDRAW_AMOUNT_EXCEED));
     }
 
 }
